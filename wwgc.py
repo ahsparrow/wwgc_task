@@ -58,12 +58,13 @@ def make_circle(tp):
     return [tp['pos'].destination(radius, a) for a in range(0, 360, 5)]
 
 def make_sector(tp, ang):
-    a1 = int(tp['A1'])
-    r1 = int(tp['R1'][:-1])
-    r2 = int(tp.get('R2', "0m")[:-1])
+    a1 = float(tp['A1'])
+    r1 = float(tp['R1'][:-1])
+    r2 = float(tp.get('R2', "0m")[:-1])
 
     start = ang - a1
-    ang = [start + n for n in range(2 * a1 + 1)]
+    inc = (2 * a1) / 180
+    ang = [start + (inc * n) for n in range(180)]
 
     coords = [tp['pos'].destination(r1, a) for a in ang]
 

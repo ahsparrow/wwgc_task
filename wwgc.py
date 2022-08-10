@@ -79,6 +79,9 @@ def zone_features(tps, class_name):
     features = []
     for n, tp in enumerate(tps):
         match tp['Style']:
+            case "0":
+                # Fixed
+                ang = float(tp['A12']) + 180
             case "1":
                 # Symmetrical
                 ang1 = tp['pos'].compassAngleTo(tps[n-1]['pos'])
